@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@picocss/pico": "^1.5.5",
-    "astro": "^1.4.2"
+    "astro": "^1.4.2",
+    "chart.js": "^3.9.1"
   }
 }
