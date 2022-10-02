@@ -3,29 +3,52 @@ import Layout from "../layouts/layout.astro";
 
 let questions = [
   {
-    question: "What is the capital of France?",
-    answers: ["Paris", "London", "Berlin", "Madrid"],
-    correctAnswer: 0,
+    question:
+      "Which of the following impacts that climate change may have on our health and environment?",
+    answers: [
+      "Intense Heat Waves",
+      "Unbalance Ecosystem",
+      "Extreme weather condition",
+      "All of the above",
+    ],
+    correctAnswer: 4,
   },
   {
-    question: "What is the capital of Germany?",
-    answers: ["Paris", "London", "Berlin", "Madrid"],
+    question:
+      "Where have some of the strongest and earliest impacts of global warming occurred?",
+    answers: [
+      "Northern Latitude",
+      "Southern Latitude",
+      "Antarctica",
+      "All of the above",
+    ],
     correctAnswer: 2,
   },
   {
-    question: "What is the capital of Spain?",
-    answers: ["Paris", "London", "Berlin", "Madrid"],
-    correctAnswer: 3,
+    question:
+      "Which of the following action could you take to help lessen the impact of climate change?",
+    answers: [
+      "More use of Electric Vehicles",
+      "Reducing Food Wasteage",
+      "Conserve Water",
+      "All of the above",
+    ],
+    correctAnswer: 4,
   },
   {
-    question: "What is the capital of England?",
-    answers: ["Paris", "London", "Berlin", "Madrid"],
+    question: "Which of the following is not a green house effect gas",
+    answers: ["Carbon Dioxide", "Ozone", "Methane", "Nitrogen"],
+    correctAnswer: 4,
+  },
+  {
+    question: "What is the major effect of climate change in alska?",
+    answers: [
+      "Increase in Wildfires",
+      "Increase in Sea Ice",
+      "Decrease in Temperature",
+      "All of the above",
+    ],
     correctAnswer: 1,
-  },
-  {
-    question: "What is the capital of Italy?",
-    answers: ["Paris", "London", "Berlin", "Madrid"],
-    correctAnswer: 3,
   },
 ];
 ---
@@ -38,7 +61,11 @@ let questions = [
           <div class={"question" + (index + 1)} style="padding-bottom: 5%;">
             <h2>{question.question}</h2>
             <div class={"answers" + (index + 1)}>
-              <select id={"question" + (index + 1)} required style="padding-top: 1%;">
+              <select
+                id={"question" + (index + 1)}
+                required
+                style="padding-top: 1%;"
+              >
                 <option value={question.answers[0]} selected>
                   {question.answers[0]}
                 </option>
@@ -64,29 +91,52 @@ let questions = [
 <script is:inline>
   let questions = [
     {
-      question: "What is the capital of France?",
-      answers: ["Paris", "London", "Berlin", "Madrid"],
-      correctAnswer: 0,
+      question:
+        "Which of the following impacts that climate change may have on our health and environment?",
+      answers: [
+        "Intense Heat Waves",
+        "Unbalance Ecosystem",
+        "Extreme weather condition",
+        "All of the above",
+      ],
+      correctAnswer: 4,
     },
     {
-      question: "What is the capital of Germany?",
-      answers: ["Paris", "London", "Berlin", "Madrid"],
+      question:
+        "Where have some of the strongest and earliest impacts of global warming occurred?",
+      answers: [
+        "Northern Latitude",
+        "Southern Latitude",
+        "Antarctica",
+        "All of the above",
+      ],
       correctAnswer: 2,
     },
     {
-      question: "What is the capital of Spain?",
-      answers: ["Paris", "London", "Berlin", "Madrid"],
-      correctAnswer: 3,
+      question:
+        "Which of the following action could you take to help lessen the impact of climate change?",
+      answers: [
+        "More use of Electric Vehicles",
+        "Reducing Food Wasteage",
+        "Conserve Water",
+        "All of the above",
+      ],
+      correctAnswer: 4,
     },
     {
-      question: "What is the capital of England?",
-      answers: ["Paris", "London", "Berlin", "Madrid"],
+      question: "Which of the following is not a green house effect gas",
+      answers: ["Carbon Dioxide", "Ozone", "Methane", "Nitrogen"],
+      correctAnswer: 4,
+    },
+    {
+      question: "What is the major effect of climate change in alska?",
+      answers: [
+        "Increase in Wildfires",
+        "Increase in Sea Ice",
+        "Decrease in Temperature",
+        "All of the above",
+      ],
       correctAnswer: 1,
-    },
-    {
-      question: "What is the capital of Italy?",
-      answers: ["Paris", "London", "Berlin", "Madrid"],
-      correctAnswer: 3,
     },
   ];
   const form = document.getElementById("quiz-form");
