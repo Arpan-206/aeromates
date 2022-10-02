@@ -1,26 +1,61 @@
 ---
 import Layout from "../../layouts/layout.astro";
 const id = Astro.url.pathname.split("/")[2];
-const response = await fetch(`https://aeromates.hasura.app/api/rest/get-one?id=${id}`, {
+const response = await fetch(
+  `https://aeromates.hasura.app/api/rest/get-one?id=${id}`,
+  {
     method: "GET",
     headers: {
-        "x-hasura-admin-secret": import.meta.env.HASURA_ADMIN_SECRET,
-    }
-});
+      "x-hasura-admin-secret": import.meta.env.HASURA_ADMIN_SECRET,
+    },
+  }
+);
 let post = await response.json();
-post = post['quizzes_quizzes_by_pk'];
+post = post["quizzes_quizzes_by_pk"];
 let partName = "";
 let score = 0;
 let timestamp = Date.now();
 if (post) {
-    partName = post['name'];
-    score = post['score'];
-    timestamp = post['timestamp'];
+  partName = post["name"];
+  score = post["score"];
+  timestamp = post["timestamp"];
+  Astro.cookies.set("score", score.toString());
 }
 ---
 
-
 <Layout>
   <h1>{partName}'s quiz report!</h1>
-    <h2>Score: {score}/5 ({(score/5) * 100}%)</h2>
+  <h2>Score: {score}/5 ({(score / 5) * 100}%)</h2>
+  <p>Attemped on {timestamp}</p>
+  <div style="width: 50%; height: 50%;"> <canvas id="scorey"> </canvas> </div>
 </Layout>
+<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script is:inline>
+    let allcooks = document.cookie.split(";");
+    let score = 0;
+    for (let i = 0; i < allcooks.length; i++) {
+      let cook = allcooks[i].split("=");
+      if (cook[0].trim() === "score") {
+        score = parseInt(cook[1]);
+      }
+    }
+  const data = {
+    labels: ["Incorrect", "Correct"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [score, 5 - score],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+        ],
+        hoverOffset: 2,
+      },
+    ],
+  };
+  const config = {
+    type: "doughnut",
+    data: data,
+  };
+  const scorey = new Chart(document.getElementById("scorey"), config);
+</script>

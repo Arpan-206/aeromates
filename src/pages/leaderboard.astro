@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/layout.astro";
+const response = await fetch(
+  `https://aeromates.hasura.app/api/rest/get-latest?limit=200`,
+  {
+    method: "GET",
+    headers: {
+      "x-hasura-admin-secret": import.meta.env.HASURA_ADMIN_SECRET,
+    },
+  }
+);
+let leaderboard = await response.json();
+leaderboard = leaderboard['quizzes_quizzes'];
+if (!leaderboard){
+    leaderboard = [];
+}
+---
+
+<Layout>
+    <h1>Leaderboard</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        {leaderboard.map((row, index) => (
+            <tr>
+            <td>{index + 1}</td>
+            <td>{row.name ? row.name : "Anonymous User"}</td>
+            <td>{row.score}</td>
+            </tr>
+        ))}
+        </tbody>
+    </table>
+</Layout>
