@@ -20,6 +20,7 @@ if (post) {
   score = post["score"];
   timestamp = post["timestamp"];
   Astro.cookies.set("score", score.toString());
+  Astro.cookies.set("id", id.toString());
 }
 ---
 
@@ -27,28 +28,40 @@ if (post) {
   <h1>{partName}'s quiz report!</h1>
   <h2>Score: {score}/5 ({(score / 5) * 100}%)</h2>
   <p>Attemped on {timestamp}</p>
-  <div style="width: 50%; height: 50%;"> <canvas id="scorey"> </canvas> </div>
+  <div style="width: 50%; height: 50%;"><canvas id="scorey"> </canvas></div>
+  <div class="container" style="padding-top: 2%;">
+    <p>As a token of our appreciation, here is a certificate to officially onboard you as a climate warrior.</p>
+    <img class="img" src="http://127.0.0.1:8000/certificate/" />
+  </div>
 </Layout>
 <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script is:inline>
-    let allcooks = document.cookie.split(";");
-    let score = 0;
-    for (let i = 0; i < allcooks.length; i++) {
-      let cook = allcooks[i].split("=");
-      if (cook[0].trim() === "score") {
-        score = parseInt(cook[1]);
-      }
+  let allcooks = document.cookie.split(";");
+  let score = 0;
+  for (let i = 0; i < allcooks.length; i++) {
+    let cook = allcooks[i].split("=");
+    if (cook[0].trim() === "score") {
+      score = parseInt(cook[1]);
     }
+  }
+  let quesid = "";
+  for (let i = 0; i < allcooks.length; i++) {
+    let cook = allcooks[i].split("=");
+    if (cook[0].trim() === "id") {
+      quesid = cook[1];
+    }
+  }
+  console.log(quesid);
+  fetch(`http://127.0.0.1:8000/certificate/${quesid}`, { mode: "no-cors" });
+  let img = document.querySelector(".img");
+  img.src = `http://127.0.0.1:8000/certificate-img/${quesid}.png`;
   const data = {
     labels: ["Incorrect", "Correct"],
     datasets: [
       {
         label: "My First Dataset",
         data: [score, 5 - score],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-        ],
+        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
         hoverOffset: 2,
       },
     ],
