@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/layout.astro";
+
+let questions = [
+  {
+    question: "What is the capital of France?",
+    answers: ["Paris", "London", "Berlin", "Madrid"],
+    correctAnswer: 0,
+  },
+  {
+    question: "What is the capital of Germany?",
+    answers: ["Paris", "London", "Berlin", "Madrid"],
+    correctAnswer: 2,
+  },
+  {
+    question: "What is the capital of Spain?",
+    answers: ["Paris", "London", "Berlin", "Madrid"],
+    correctAnswer: 3,
+  },
+  {
+    question: "What is the capital of England?",
+    answers: ["Paris", "London", "Berlin", "Madrid"],
+    correctAnswer: 1,
+  },
+  {
+    question: "What is the capital of Italy?",
+    answers: ["Paris", "London", "Berlin", "Madrid"],
+    correctAnswer: 3,
+  },
+];
+---
+
+<Layout>
+  <div class="question-box container">
+    <form id="quiz-form">
+      {
+        questions.map((question, index) => (
+          <div class={"question" + (index + 1)} style="padding-bottom: 5%;">
+            <h2>{question.question}</h2>
+            <div class={"answers" + (index + 1)}>
+              <select id={"question" + (index + 1)} required style="padding-top: 1%;">
+                <option value={question.answers[0]} selected>
+                  {question.answers[0]}
+                </option>
+                <option value={question.answers[1]}>
+                  {question.answers[1]}
+                </option>
+                <option value={question.answers[2]}>
+                  {question.answers[2]}
+                </option>
+                <option value={question.answers[3]}>
+                  {question.answers[3]}
+                </option>
+              </select>
+            </div>
+          </div>
+        ))
+      }
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</Layout>
+
+<script is:inline>
+  let questions = [
+    {
+      question: "What is the capital of France?",
+      answers: ["Paris", "London", "Berlin", "Madrid"],
+      correctAnswer: 0,
+    },
+    {
+      question: "What is the capital of Germany?",
+      answers: ["Paris", "London", "Berlin", "Madrid"],
+      correctAnswer: 2,
+    },
+    {
+      question: "What is the capital of Spain?",
+      answers: ["Paris", "London", "Berlin", "Madrid"],
+      correctAnswer: 3,
+    },
+    {
+      question: "What is the capital of England?",
+      answers: ["Paris", "London", "Berlin", "Madrid"],
+      correctAnswer: 1,
+    },
+    {
+      question: "What is the capital of Italy?",
+      answers: ["Paris", "London", "Berlin", "Madrid"],
+      correctAnswer: 3,
+    },
+  ];
+  const form = document.getElementById("quiz-form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let score = 0;
+    for (let i = 0; i < questions.length; i++) {
+      const answer = document.getElementById("question" + (i + 1)).value;
+      if (answer === questions[i].answers[questions[i].correctAnswer]) {
+        score++;
+      }
+    }
+    alert("Your score is " + score + "/" + questions.length);
+  });
+</script>

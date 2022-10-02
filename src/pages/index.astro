@@ -1,48 +1,25 @@
 ---
-import "@picocss/pico/css/pico.min.css";
+import Layout from "../layouts/layout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Aeromated</title>
-  </head>
-  <body>
-    <div class="container">
-      <nav>
-        <ul>
-          <li><strong>Aeromated</strong></li>
-        </ul>
-        <ul>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#" role="button">Take the leap!</a></li>
-        </ul>
-      </nav>
-      <main>
-        <header>
-          <h1 style="font-size: 550%; text-align: center; text-justify: auto;">Aeromated</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id
-            vulputate neque. Suspendisse neque metus, ornare sit amet varius id,
-            imperdiet quis massa. Mauris congue, turpis et sodales posuere, ante
-            lectus tincidunt sapien, non condimentum nulla ex non tortor. Nullam
-            nec efficitur augue. Nulla vehicula dolor luctus erat sollicitudin
-            eleifend. Sed interdum mollis rhoncus. Etiam faucibus sem augue.
-            Maecenas in elementum elit, quis finibus mauris. Cras vel ipsum non
-            ex interdum dignissim eget sed ante. Curabitur eu metus arcu. Fusce
-            a congue arcu. Phasellus rhoncus, est convallis hendrerit molestie,
-            lectus dui porttitor sem, in vehicula augue nisl et justo. Phasellus
-            gravida magna laoreet neque dictum, eu maximus purus dapibus. Donec
-            sodales sagittis diam feugiat sodales.
-          </p>
-          <div class="margin: 50%;">
-            <a href="#" role="button" class="secondary">Dive right in!</a>
-          </div>
-        </header>
-      </main>
+<Layout>
+  <header>
+    <h1
+      style="font-size: 550%; text-align: center; text-justify: auto; background: #105BD8;
+background: linear-gradient(to right, #ff4d4d 0%, #f9cb28 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;"
+    >
+      Aeromated
+    </h1>
+    <p>
+      Over the past 60 years, the average temperature across Alaska has increased by approximately 3°F. This increase is more than twice the warming seen in the rest of the United States. Warming in the winter has increased by an average of 6°F and has led to changes in ecosystems, such as earlier breakup of river ice in the spring.
+
+<p> Click on the button below to know more about climate change has affected our natural habitats because what happens in Alaska today will happen in your town tomorrow.
+</p>
+    </p>
+    <div style="text-align: center;">
+      <a href="/course" role="button" class="secondary">Dive right in!</a>
     </div>
-  </body>
-</html>
+  </header>
+</Layout>
