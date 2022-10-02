@@ -20,3 +20,5 @@ pnpm-debug.log*
 
 # VS Code
 .vscode/
+
+.netlify/
