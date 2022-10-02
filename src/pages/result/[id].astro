@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/layout.astro";
+const id = Astro.url.pathname.split("/")[2];
+const response = await fetch(`https://aeromates.hasura.app/api/rest/get-one?id=${id}`, {
+    method: "GET",
+    headers: {
+        "x-hasura-admin-secret": import.meta.env.HASURA_ADMIN_SECRET,
+    }
+});
+let post = await response.json();
+post = post['quizzes_quizzes_by_pk'];
+let partName = "";
+let score = 0;
+let timestamp = Date.now();
+if (post) {
+    partName = post['name'];
+    score = post['score'];
+    timestamp = post['timestamp'];
+}
+---
+
+
+<Layout>
+  <h1>{partName}'s quiz report!</h1>
+    <h2>Score: {score}/5 ({(score/5) * 100}%)</h2>
+</Layout>
