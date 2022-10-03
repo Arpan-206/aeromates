@@ -31,7 +31,7 @@ if (post) {
   <div style="width: 50%; height: 50%;"><canvas id="scorey"> </canvas></div>
   <div class="container" style="padding-top: 2%;">
     <p>As a token of our appreciation, here is a certificate to officially onboard you as a climate warrior.</p>
-    <img class="img" src="http://127.0.0.1:8000/certificate/" />
+    <img class="img" src="https://aeromated-certificates.up.railway.app/certificate/" />
   </div>
 </Layout>
 <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -52,9 +52,9 @@ if (post) {
     }
   }
   console.log(quesid);
-  fetch(`http://127.0.0.1:8000/certificate/${quesid}`, { mode: "no-cors" });
+  fetch(`https://aeromated-certificates.up.railway.app/certificate/${quesid}`, { mode: "no-cors" });
   let img = document.querySelector(".img");
-  img.src = `http://127.0.0.1:8000/certificate-img/${quesid}.png`;
+  img.src = `https://aeromated-certificates.up.railway.app/certificate-img/${quesid}.png`;
   const data = {
     labels: ["Incorrect", "Correct"],
     datasets: [
